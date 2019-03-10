@@ -1,8 +1,9 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :companies, only: [:index, :show]
+      resources :companies, only: %i[index show]
     end
   end
 end

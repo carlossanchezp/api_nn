@@ -1,1 +1,3 @@
-ActiveModelSerializers.config.adapter = :json_api
+# frozen_string_literal: true
+
+# ActiveModelSerializers.config.adapter = :json_api

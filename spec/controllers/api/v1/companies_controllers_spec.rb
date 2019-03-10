@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Api::V1::CompaniesController do
@@ -10,14 +12,16 @@ describe Api::V1::CompaniesController do
     end
 
     it 'should return proper json' do
-      create_list :company, 2
+      create_list :company, 3
       subject
 
       Company.recent.each_with_index do |company, index|
-        expect(json_data[index]['attributes']).to eq({
-          "name" => company.name,
-          "description" => company.description
-        })
+        expect(json[index]).to eq(
+          'id' => company.id,
+          'name' => company.name,
+          'ric' => company.ric,
+          'sharePrice' => company.share_price
+        )
       end
     end
 
@@ -25,10 +29,10 @@ describe Api::V1::CompaniesController do
       old_company = create :company
       newer_company = create :company
       subject
-      expect(json_data.first['id']).to eq(newer_company.id.to_s)
-      expect(json_data.last['id']).to eq(old_company.id.to_s)
-    end
 
+      expect(json.first['id']).to eq(newer_company.id)
+      expect(json.last['id']).to eq(old_company.id)
+    end
   end
 
   describe '#show' do
@@ -42,11 +46,14 @@ describe Api::V1::CompaniesController do
 
     it 'should return proper json' do
       subject
-      expect(json_data['attributes']).to eq({
-          "name" => company.name,
-          "description" => company.description
-      })
+      expect(json).to eq(
+        'id' => company.id,
+        'name' => company.name,
+        'ric' => company.ric,
+        'sharePrice' => company.share_price,
+        'description' => company.description,
+        'country' => company.country
+      )
     end
   end
-
 end
