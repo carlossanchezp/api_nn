@@ -34,3 +34,13 @@ INSTALLATION
 =======
   Execute test: rspec 
 
+* DEPLOY HEROKU
+===============
+
+git push heroku master
+
+heroku run rake db:migrate:status
+
+heroku run rake db:migrate
+
+heroku restart
