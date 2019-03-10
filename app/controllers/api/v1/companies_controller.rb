@@ -23,8 +23,7 @@ class Api::V1::CompaniesController < ApplicationController
   end
 
   def set_share_price
-    company_id = Company.where(id: params[:id]).pluck(:id).first
-    CompaniesHardWorker.perform_async('update company share price', company_id)
+    CompaniesHardWorker.perform_async('update company share price', @company.id)
   end
 
   # setting data
