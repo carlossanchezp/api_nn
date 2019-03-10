@@ -25,7 +25,7 @@ INSTALLATION
 * Sidekiq
 =========
 
-  To start sidekiq
+  To start sidekiq local
 
   bundle exec sidekiq
 
@@ -33,6 +33,7 @@ INSTALLATION
 * TEST
 =======
   Execute test: rspec 
+
 
 * DEPLOY HEROKU
 ===============
@@ -44,3 +45,11 @@ heroku run rake db:migrate:status
 heroku run rake db:migrate
 
 heroku restart
+
+* ENDPOINT
+==========
+
+To simulate one of our third party data providers we have created two endpoints to get the necessary information:
+
+- GET List of Companies: https://apinn.herokuapp.com/api/v1/companies
+- GET Company info by ID: https://apinn.herokuapp.com/api/v1/companies/{companyId}
