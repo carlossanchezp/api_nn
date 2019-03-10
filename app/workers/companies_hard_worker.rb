@@ -31,6 +31,8 @@ class CompaniesHardWorker
   # Simulate share price find external service
   def web_service_share_price(company)
     # ckech external share price for company
+    # TODO: another process with a worker to update
+    # or a crobtab with find external service to update every 10 second
     0.25
   end
 
