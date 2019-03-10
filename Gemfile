@@ -26,8 +26,11 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rb-readline'
+
+# Paginate for JSONs
 gem 'will_paginate', '~> 3.1'
 
+# Serializers for JSONs
 gem 'active_model_serializers'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
