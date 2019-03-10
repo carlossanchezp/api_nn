@@ -15,7 +15,9 @@ class CompaniesHardWorker
   private
 
   def create_new_share_price_for_all_companies
-    Company.all.each do |company|
+    Company.find_each(batch_size: 100) do |company|
+      # TODO: In a future with a lot fo companies separates in other workers for updates
+      # with Redis update share price before send de update to worker
       new_share_price = company.share_price + web_service_share_price(company)
       company.update(share_price: new_share_price)
     end
@@ -27,14 +29,13 @@ class CompaniesHardWorker
   end
 
   # Simulate share price find external service
-  def web_service_share_price(_company)
+  def web_service_share_price(company)
     # ckech external share price for company
     0.25
   end
 
   def update_share_price_for_company(company)
-    share_price = 0.25
-    new_share_price = company.share_price + share_price
+    new_share_price = company.share_price + web_service_share_price(company)
     company.update(share_price: new_share_price)
   end
 end
