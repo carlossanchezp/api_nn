@@ -38,6 +38,9 @@ gem 'active_model_serializers'
 # Workers asynchronous
 gem 'sidekiq'
 
+# Redis
+gem 'redis-rails'
+gem 'redis-namespace'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
